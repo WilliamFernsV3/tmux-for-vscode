@@ -1,0 +1,73 @@
+{
+  "name": "tmux-vscode",
+  "displayName": "TMUX for VSCode",
+  "publisher": "WilliamFernsV3",
+  "description": "Use TMUX directly inside VS Code",
+  "version": "1.0.6",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WilliamFernsV3/tmux-for-vscode"
+  },
+  "icon": "images/tmux.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tmux.openTmux",
+        "title": "TMUX: Open"
+      },
+      {
+        "command": "tmux.closeNonTerminalEditors",
+        "title": "TMUX: Close Other Non-Terminal Editors in Group"
+      }
+    ],
+    "keybindings": [
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "TMUX Configuration",
+      "properties": {
+        "tmux.command": {
+          "type": "string",
+          "default": "tmux && exit",
+          "description": "Command to run tmux in the terminal (depending on operating system & shell)"
+        },
+        "tmux.additionalTerminalEditors": {
+          "type": "array",
+          "default": ["lazygit"],
+          "description": "All other terminal editors in group that you do not want to close when executing `tmux.closeNonTerminalEditors`."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "deploy": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "@vscode/vsce": "^2.22.0",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3"
+  }
+}
